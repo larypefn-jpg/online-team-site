@@ -33,27 +33,28 @@
       text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
     }
 
-    /* Яркие кнопки */
+    /* Яркие кнопки (для нижнего бара и формы) */
     .btn-primary{
       display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
-      padding:1rem 1.6rem; border-radius:1rem; font-weight:900; font-size:1.125rem;
+      padding:.85rem 1.4rem; border-radius:1rem; font-weight:900; font-size:1.05rem;
       color:#fff; background: linear-gradient(180deg, #5a73ff, #2f49e8);
-      box-shadow: 0 0 20px rgba(47,73,232,.6), 0 8px 25px rgba(0,0,0,.4);
-      border:2px solid rgba(255,255,255,.9);
+      box-shadow: 0 0 14px rgba(47,73,232,.5), 0 6px 16px rgba(0,0,0,.35);
+      border:2px solid rgba(255,255,255,.8);
       transition: transform .15s ease, filter .15s ease;
     }
-    .btn-primary:hover{ transform: scale(1.05); filter: brightness(1.15); }
+    .btn-primary:hover{ transform: scale(1.03); filter: brightness(1.07); }
 
     .btn-ghost{
       display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
-      padding:1rem 1.6rem; border-radius:1rem; font-weight:900; font-size:1.125rem;
+      padding:.85rem 1.4rem; border-radius:1rem; font-weight:900; font-size:1.05rem;
       color:#2f49e8; background:#fff;
       border:2px solid #2f49e8;
-      box-shadow: 0 0 15px rgba(255,255,255,.8);
+      box-shadow: 0 0 10px rgba(255,255,255,.7);
       transition: transform .15s ease, background .15s ease, color .15s ease;
     }
-    .btn-ghost:hover{ transform: scale(1.05); background:#2f49e8; color:#fff; }
-    /* Анимации c уважением к prefers-reduced-motion */
+    .btn-ghost:hover{ transform: scale(1.03); background:#2f49e8; color:#fff; }
+
+    /* Анимации */
     @media (prefers-reduced-motion: no-preference) {
       .reveal{opacity:0; transform: translateY(12px);}
       .reveal.in{opacity:1; transform:none;}
@@ -64,13 +65,24 @@
       .btn-primary.animate-pulse-cta{animation: pulseCta 2.2s ease-in-out .6s infinite alternate;}
       @keyframes pulseCta{from{box-shadow: 0 0 14px rgba(47,73,232,.45), 0 10px 24px rgba(0,0,0,.35);} to{box-shadow: 0 0 28px rgba(47,73,232,.7), 0 12px 30px rgba(0,0,0,.45); transform: translateY(-1px);} }
     }
+
+    /* Чуть меньше мобильный нижний бар */
+    @media (max-width: 480px){
+      .mobile-cta { gap: .5rem; }
+      .mobile-cta a { font-size: .95rem; padding: .75rem 1rem; }
+    }
   </style>
 </head>
 <body class="font-sans">
+  <!-- HERO -->
   <section class="bg-collage min-h-[100dvh] flex items-center">
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h1 class="text-4xl md:text-6xl font-extrabold outlined-text leading-tight reveal fade-up">Набираем сотрудников в онлайн-команду</h1>
-      <p class="mt-6 text-xl md:text-2xl font-extrabold outlined-subtext reveal fade-up fade-delay">Вакансия: помощник аналитика онлайн. Возраст от 18 лет.<br>Опыт не обязателен — предусмотрено оплачиваемое обучение.<br>Работа легальная. Выплаты — каждый день.</p>
+      <p class="mt-6 text-xl md:text-2xl font-extrabold outlined-subtext reveal fade-up fade-delay">
+        Вакансия: помощник аналитика онлайн. Возраст от 18 лет.<br>
+        Опыт не обязателен — предусмотрено оплачиваемое обучение.<br>
+        Работа легальная. Выплаты — каждый день.
+      </p>
 
       <ul class="mt-6 space-y-2 text-lg outlined-subtext reveal fade-up fade-delay-2">
         <li>• Гибкий график, работа с ноутбука или телефона</li>
@@ -78,28 +90,34 @@
         <li>• Прозрачная и честная система выплат</li>
       </ul>
 
-      <div class="mt-10 flex flex-col sm:flex-row justify-center gap-5 reveal fade-up fade-delay-2">
-        <a href="#apply" class="btn-primary w-full sm:w-auto animate-pulse-cta">Подать заявку</a>
-        <a href="#about" class="btn-ghost w-full sm:w-auto">Подробнее</a>
-      </div>
+      <!-- ВНИМАНИЕ: здесь раньше были 2 кнопки — мы их убрали -->
     </div>
   </section>
 
   <!-- Липкий бар CTA для мобайла -->
   <div class="fixed bottom-0 inset-x-0 sm:hidden z-50 p-3">
-    <div class="max-w-md mx-auto grid grid-cols-2 gap-3">
+    <div class="max-w-md mx-auto grid grid-cols-2 gap-3 mobile-cta">
       <a href="#apply" class="btn-primary animate-pulse-cta">Откликнуться</a>
       <a href="#about" class="btn-ghost">Подробнее</a>
     </div>
   </div>
 
-  <!-- Секция О нас (коротко) -->
+  <!-- Секция О нас -->
   <section id="about" class="bg-white/90 py-10">
     <div class="max-w-5xl mx-auto px-4">
       <div class="grid md:grid-cols-3 gap-4 md:gap-6">
-        <div class="p-5 rounded-2xl bg-white shadow-soft border reveal fade-up"><p class="font-extrabold text-[var(--ink)]">Простой старт</p><p class="mt-1">Пошаговое обучение и понятные задачи.</p></div>
-        <div class="p-5 rounded-2xl bg-white shadow-soft border reveal fade-up fade-delay"><p class="font-extrabold text-[var(--ink)]">Поддержка</p><p class="mt-1">Наставник помогает на каждом шаге.</p></div>
-        <div class="p-5 rounded-2xl bg-white shadow-soft border reveal fade-up fade-delay-2"><p class="font-extrabold text-[var(--ink)]">Ежедневные выплаты</p><p class="mt-1">Оплата за выполненные задачи.</p></div>
+        <div class="p-5 rounded-2xl bg-white shadow-soft border reveal fade-up">
+          <p class="font-extrabold text-[var(--ink)]">Простой старт</p>
+          <p class="mt-1">Пошаговое обучение и понятные задачи.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-white shadow-soft border reveal fade-up fade-delay">
+          <p class="font-extrabold text-[var(--ink)]">Поддержка</p>
+          <p class="mt-1">Наставник помогает на каждом шаге.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-white shadow-soft border reveal fade-up fade-delay-2">
+          <p class="font-extrabold text-[var(--ink)]">Ежедневные выплаты</p>
+          <p class="mt-1">Оплата за выполненные задачи.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -153,22 +171,24 @@
     </div>
   </section>
 
-  <footer class="py-10 text-center text-xs text-slate-600 font-semibold">© <span id="year"></span> Онлайн‑команда. Все права защищены.</footer>
+  <footer class="py-10 text-center text-xs text-slate-600 font-semibold">© <span id="year"></span> Онлайн-команда. Все права защищены.</footer>
 
   <script>
-    // Intersection Observer для активации анимаций
+    // анимации
     const els = document.querySelectorAll('.reveal');
     const io = 'IntersectionObserver' in window ? new IntersectionObserver((entries)=>{
       entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
     }, {threshold: .12}) : null;
     els.forEach(el=>{ if(io) io.observe(el); else el.classList.add('in'); });
 
-    // Служебные поля и отправка формы (Apps Script)
+    // служебные поля
     document.getElementById('year').textContent = new Date().getFullYear();
     const src = document.getElementById('source'); if (src) src.value = location.href;
     const ua = document.getElementById('ua'); if (ua) ua.value = navigator.userAgent;
 
+    // твой настоящий URL скрипта
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzf87xkO3gRuj91GDQEXHK4X_7POVeyXHdf7g-2bonGl40grTOGwPDNtDMX_nlOqQu6/exec';
+
     const form = document.getElementById('applyForm');
     const state = document.getElementById('state');
     if(form){
@@ -186,7 +206,12 @@
         state.textContent = 'Отправляем…';
         state.classList.remove('hidden');
         try {
-          await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+          await fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
           state.className = 'mt-3 text-center text-sm text-emerald-600 font-bold';
           state.textContent = 'Спасибо! Заявка отправлена. Мы свяжемся в мессенджере.';
           form.reset();
